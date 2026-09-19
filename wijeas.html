@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WAU International Journal of Engineering and Applied Sciences</title>
+<meta name="description" content="WAU International Journal of Engineering and Applied Sciences (WIJEAS) is an open access, double-anonymous peer-reviewed quarterly journal published by We Avec U (WAU) Group.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#172033; --muted:#566074; --rule:#D9DEE6;
+  --accent:#1F4FA8; --accent-link:#1F4FA8; --accent-soft:rgba(31,79,168,.08);
+  --tbc-bg:#FFF3BF; --tbc-ink:#5C4700;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"Public Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --wrap:1120px; --side:320px;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A24; --surface:#1B2230; --ink:#E7EAF0; --muted:#A3ACBB; --rule:#2C3547;
+    --accent-link:#9AB0D8; --accent-soft:rgba(154,176,216,.12);
+    --tbc-bg:#4A3E12; --tbc-ink:#FFE9A3;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A24; --surface:#1B2230; --ink:#E7EAF0; --muted:#A3ACBB; --rule:#2C3547;
+  --accent-link:#9AB0D8; --accent-soft:rgba(154,176,216,.12);
+  --tbc-bg:#4A3E12; --tbc-ink:#FFE9A3;
+}
+html{scroll-padding-top:calc(72px + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:var(--accent-link)}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--accent-link);outline-offset:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:20px;top:8px;z-index:50;background:var(--surface);padding:8px 12px;border:1px solid var(--rule);border-radius:6px}
+
+/* Utility bar */
+.utility{background:var(--surface);border-bottom:1px solid var(--rule)}
+.utility .wrap{display:flex;align-items:center;gap:16px;min-height:52px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.utility .pub{font-size:14px;color:var(--muted)}
+.utility .issn{font-size:14px;color:var(--muted)}
+.utility .spacer{flex:1}
+
+/* Masthead */
+.masthead{background:var(--surface)}
+.masthead .wrap{display:flex;gap:20px;padding-top:32px;padding-bottom:0}
+.spine{width:14px;flex:0 0 14px;background:var(--accent);border-radius:2px}
+.mh-body{flex:1;min-width:0;padding-bottom:4px}
+.jtitle{font-family:var(--serif);font-weight:500;font-size:clamp(30px,5.2vw,52px);line-height:1.08;margin:0 0 10px;letter-spacing:-.01em}
+.tagline{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--muted);margin:0 0 20px}
+.colophon{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.colophon div{padding:12px 16px 12px 0;border-right:1px solid var(--rule)}
+.colophon div:last-child{border-right:0}
+.colophon dt{font-size:12.5px;font-weight:700;letter-spacing:.01em;color:var(--muted);margin:0 0 3px}
+.colophon dd{margin:0;font-size:15px}
+@media (max-width:760px){
+  .colophon{grid-template-columns:1fr 1fr}
+  .colophon div{border-right:0;padding-right:12px}
+  .spine{width:8px;flex:0 0 8px}
+  .masthead .wrap{padding-top:22px}
+}
+
+/* Navigation */
+nav.primary{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--rule)}
+nav.primary .scroller{max-width:var(--wrap);margin:0 auto;padding:0 20px;display:flex;gap:4px;overflow-x:auto;scrollbar-width:none}
+nav.primary .scroller::-webkit-scrollbar{display:none}
+nav.primary a{white-space:nowrap;padding:14px 12px;font-size:15px;color:var(--ink);text-decoration:none;border-bottom:3px solid transparent}
+nav.primary a:hover{color:var(--accent-link)}
+nav.primary a[aria-current="page"]{color:var(--accent-link);border-bottom-color:var(--accent)}
+
+/* Layout */
+main{padding:36px 0 64px}
+.cols{display:grid;grid-template-columns:minmax(0,1fr) var(--side);gap:40px;align-items:start}
+@media (max-width:900px){.cols{grid-template-columns:1fr;gap:28px}}
+.prose{max-width:72ch}
+h1.page{font-family:var(--serif);font-weight:500;font-size:30px;line-height:1.2;margin:0 0 18px}
+h2{font-family:var(--serif);font-weight:500;font-size:23px;line-height:1.25;margin:34px 0 10px}
+h3{font-size:16px;font-weight:700;margin:24px 0 6px}
+.lead{font-family:var(--serif);font-size:21px;line-height:1.5;margin:0 0 8px}
+p{margin:0 0 14px}
+ul,ol{margin:0 0 14px;padding-left:22px}
+li{margin-bottom:7px}
+.meta{font-size:14px;color:var(--muted)}
+
+/* Components */
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:18px;margin-bottom:18px}
+.panel h2{font-family:var(--sans);font-size:16px;font-weight:700;margin:0 0 10px}
+.panel p{font-size:15px}
+.panel :last-child{margin-bottom:0}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:6px;padding:9px 16px;font:inherit;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.08)}
+.btn.secondary{background:transparent;color:var(--accent-link);border-color:currentColor}
+.glance{width:100%;border-collapse:collapse;font-size:15px}
+.glance th{text-align:left;font-weight:600;color:var(--muted);padding:8px 10px 8px 0;vertical-align:top;width:40%}
+.glance td{padding:8px 0;vertical-align:top;border-bottom:1px solid var(--rule)}
+.glance tr:last-child td,.glance tr:last-child th{border-bottom:0}
+table.data{width:100%;border-collapse:collapse;font-size:15px;margin:0 0 18px}
+table.data th{text-align:left;padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);font-weight:600;vertical-align:top}
+table.data td{padding:10px 12px 10px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+table.data thead th{color:var(--muted);font-size:13px}
+.scope{border-left:3px solid var(--accent);background:var(--surface);padding:14px 16px;margin:0 0 10px;border-radius:0 6px 6px 0}
+.scope h3{font-family:var(--serif);font-weight:500;font-size:20px;margin:0 0 4px}
+.scope p{font-size:15px;color:var(--muted);margin:0}
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
+@media (max-width:700px){.benefits{grid-template-columns:1fr}}
+.benefit{border-top:1px solid var(--rule);padding:14px 0}
+.benefit h3{margin:0 0 4px}
+.benefit p{font-size:15px;margin:0;color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-bottom:8px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:14px}
+.card .role{font-size:13px;color:var(--muted);margin-bottom:6px}
+.card .nm{font-weight:600}
+.card .line{font-size:14px;color:var(--muted)}
+.empty{border:1px dashed var(--rule);border-radius:8px;padding:20px;color:var(--muted);background:transparent}
+.empty p:last-child{margin-bottom:0}
+.issuecard{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--accent);border-radius:0 0 8px 8px;padding:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px;padding:0;list-style:none}
+.tags li{background:var(--surface);border:1px solid var(--rule);border-radius:999px;padding:4px 11px;font-size:14px;color:var(--muted);margin:0}
+details.policy{background:var(--surface);border:1px solid var(--rule);border-radius:8px;margin-bottom:10px}
+details.policy summary{cursor:pointer;padding:13px 16px;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px;align-items:center}
+details.policy summary::-webkit-details-marker{display:none}
+details.policy summary::after{content:"+";color:var(--muted);font-weight:400}
+details.policy[open] summary::after{content:"–"}
+details.policy .body{padding:0 16px 16px;font-size:15px}
+details.policy .body :last-child{margin-bottom:0}
+.tbc{background:var(--tbc-bg);color:var(--tbc-ink);padding:1px 5px;border-radius:3px;font-size:.95em}
+.datesrow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0}
+@media (max-width:620px){.datesrow{grid-template-columns:1fr 1fr}}
+.datesrow div{border-top:1px solid var(--rule);padding-top:8px}
+.datesrow dt{font-size:12.5px;font-weight:700;color:var(--muted)}
+.datesrow dd{margin:2px 0 0;font-size:15px}
+.stack{margin-top:26px}
+.hr{border:0;border-top:1px solid var(--rule);margin:30px 0}
+.linklist{list-style:none;padding:0;margin:0}
+.linklist li{margin-bottom:8px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.scrollx{overflow-x:auto}
+
+/* Footer */
+footer.site{background:#172033;color:#E7EAF0;margin-top:0}
+:root[data-theme="dark"] footer.site,footer.site{background:#172033}
+footer.site .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px;padding-top:34px;padding-bottom:40px}
+@media (max-width:780px){footer.site .wrap{grid-template-columns:1fr;gap:24px}}
+footer.site h2{font-family:var(--sans);font-size:15px;font-weight:700;margin:0 0 12px;color:#fff}
+footer.site p,footer.site li{font-size:14px;color:#C6CDDA}
+footer.site a{color:#C6CDDA;text-decoration:underline}
+footer.site a:hover{color:#fff}
+footer.site ul{list-style:none;padding:0;margin:0}
+footer.site .fine{font-size:13px;color:#98A2B3;margin-top:14px}
+@media print{nav.primary{position:static}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="utility">
+  <div class="wrap">
+    <span class="pub">Published by We Avec U (WAU) Group</span>
+    <span class="issn">ISSN <span class="tbc">shown once assigned</span> (online)</span>
+    <span class="spacer"></span>
+    <a class="btn" href="#/submission">Submit manuscript</a>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="spine" aria-hidden="true"></div>
+    <div class="mh-body">
+      <h1 class="jtitle">WAU International Journal of Engineering and Applied Sciences</h1>
+      <p class="tagline">Engineering research that is built, tested and applied.</p>
+      <dl class="colophon">
+        <div><dt>ISSN (online)</dt><dd><span class="tbc">once assigned</span></dd></div>
+        <div><dt>Frequency</dt><dd>Quarterly</dd></div>
+        <div><dt>Peer review</dt><dd>Double-anonymous</dd></div>
+        <div><dt>Licence</dt><dd>CC BY 4.0</dd></div>
+        <div><dt>Established</dt><dd><span class="tbc">first issue date</span></dd></div>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<nav class="primary" aria-label="Primary">
+  <div class="scroller">
+    <a href="#/home">Home</a>
+    <a href="#/about">About</a>
+    <a href="#/scope">Aims and scope</a>
+    <a href="#/board">Editorial board</a>
+    <a href="#/authors">For authors</a>
+    <a href="#/current">Current issue</a>
+    <a href="#/past">Past issues</a>
+    <a href="#/policies">Policies</a>
+    <a href="#/contact">Contact</a>
+  </div>
+</nav>
+
+<main id="main">
+<div class="wrap">
+
+<!-- ======================= HOME ======================= -->
+<section class="page" data-page="home" data-nav="home" data-title="Home">
+  <div class="cols">
+    <div>
+      <p class="lead prose">WIJEAS publishes original research across the engineering disciplines and the applied sciences that underpin them. It brings computing, civil, mechanical, electrical and bio-engineering work into one venue, on a single condition: every contribution must advance an engineered solution, method, system or design.</p>
+      <p class="prose">WAU International Journal of Engineering and Applied Sciences is an open access, peer-reviewed quarterly journal published by We Avec U (WAU) Group. Every article is free to read, download and reuse under a Creative Commons Attribution 4.0 International licence.</p>
+
+      <h2>Why publish with us</h2>
+      <div class="benefits">
+        <div class="benefit"><h3>Rigorous, constructive review</h3><p>Double-anonymous peer review by at least two independent experts, with detailed feedback that strengthens your work.</p></div>
+        <div class="benefit"><h3>Timely decisions</h3><p>First decision targeted within eight weeks; accepted articles published online with a DOI soon after acceptance.</p></div>
+        <div class="benefit"><h3>Maximum visibility</h3><p>Immediate open access under CC BY 4.0, Crossref DOI, ORCID linking and metadata optimised for Google Scholar and scholarly discovery services.</p></div>
+        <div class="benefit"><h3>You keep your copyright</h3><p>Authors retain copyright and may share their published article anywhere.</p></div>
+        <div class="benefit"><h3>No hidden costs</h3><p>No submission or review fees; charges, if any, apply only after acceptance, with waivers available.</p></div>
+        <div class="benefit"><h3>The right readership</h3><p>A clearly defined scope in engineering and the applied sciences ensures your work reaches the specialists who will read and cite it.</p></div>
+        <div class="benefit"><h3>Trusted standards</h3><p>Policies aligned with COPE, recognised reporting guidelines and the UGC Suggestive Parameters, and designed to meet the criteria of leading international indexing services.</p></div>
+        <div class="benefit"><h3>Permanent record</h3><p>Long-term digital preservation, so your article remains accessible and citable.</p></div>
+      </div>
+
+      <h2>What we publish</h2>
+      <div data-scope-blocks></div>
+      <p><a href="#/scope">Read the full aims and scope</a></p>
+
+      <h2>Current issue</h2>
+      <div class="empty">
+        <p>Volume 1, Issue 1 will appear here with its table of contents. Accepted articles are published online first under Articles in press.</p>
+        <p><a href="#/article">See the sample article page</a></p>
+      </div>
+      <p><a href="#/past">Browse past issues</a></p>
+    </div>
+
+    <aside>
+      <div class="panel">
+        <h2>Submit your research</h2>
+        <p>Submissions are open all year. Read the author guidelines, then submit through the online system.</p>
+        <p><a class="btn" href="#/authors">Author guidelines</a></p>
+      </div>
+      <div class="panel">
+        <h2>Journal at a glance</h2>
+        <table class="glance">
+          <tr><th>Publisher</th><td>We Avec U (WAU) Group</td></tr>
+          <tr><th>Frequency</th><td>Quarterly (Mar, Jun, Sep, Dec)</td></tr>
+          <tr><th>Peer review</th><td>Double-anonymous, 2+ reviewers</td></tr>
+          <tr><th>First decision</th><td>Target within 8 weeks</td></tr>
+          <tr><th>Access</th><td>Open access, CC BY 4.0</td></tr>
+          <tr><th>DOI</th><td>Crossref <span class="tbc">prefix</span></td></tr>
+          <tr><th>Editor-in-Chief</th><td><span class="tbc">name, affiliation, country</span></td></tr>
+          <tr><th>First issue</th><td><span class="tbc">Volume 1, Issue 1, month year</span></td></tr>
+        </table>
+      </div>
+      <div class="panel">
+        <h2>Call for papers</h2>
+        <p>We welcome original research, reviews and short communications for the next quarterly issue. Submissions are accepted throughout the year.</p>
+        <p><a href="#/cfp">Read the call for papers</a></p>
+      </div>
+      <div class="panel">
+        <h2>Join as a reviewer</h2>
+        <p>Researchers in engineering and the applied sciences can register to review. Verified reviews can be recorded on ORCID.</p>
+        <p><a href="#/reviewers">Reviewer guidelines</a></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ======================= ABOUT ======================= -->
+<section class="page" data-page="about" data-nav="about" data-title="About the journal">
+  <div class="cols">
+    <div class="prose">
+      <h1 class="page">About the journal</h1>
+      <p class="lead">WIJEAS publishes original research across the engineering disciplines and the applied sciences that underpin them. It brings computing, civil, mechanical, electrical and bio-engineering work into one venue, on a single condition: every contribution must advance an engineered solution, method, system or design.</p>
+
+      <h2>Vision</h2>
+      <p>To be a trusted international home for engineering research that turns scientific insight into working solutions for society.</p>
+
+      <h2>Mission</h2>
+      <p>To publish rigorous, reproducible and application-oriented research across all branches of engineering and the applied sciences, reviewed fairly by international experts and freely available to every reader.</p>
+
+      <h2>Goals</h2>
+      <ol>
+        <li>Publish four issues every year, on schedule in March, June, September and December, each with at least five peer-reviewed articles.</li>
+        <li>Maintain an active editorial board of recognised scholars from several countries, every member listed with full affiliation and ORCID iD.</li>
+        <li>Keep peer review fair, transparent and timely, with a first decision targeted within eight weeks.</li>
+        <li>Meet in full the evaluation criteria of leading international indexing and abstracting services, and of the UGC Suggestive Parameters.</li>
+        <li>Build subject editorial teams covering computing and AI, civil, mechanical, electrical and bio-engineering.</li>
+        <li>Grow the share of articles that report industrial application, field validation or open datasets and code.</li>
+      </ol>
+
+      <h2>Core values</h2>
+      <h3>Integrity</h3><p>Honest, ethical research and publishing at every stage.</p>
+      <h3>Rigour</h3><p>Decisions based on sound method and evidence.</p>
+      <h3>Openness</h3><p>Free access to knowledge for every reader, everywhere.</p>
+      <h3>Fairness</h3><p>Impartial review, independent of fees, affiliation or nationality.</p>
+      <h3>Inclusion</h3><p>A platform for researchers of every country, institution and career stage.</p>
+
+      <h2>Readership</h2>
+      <p>Researchers, faculty and doctoral scholars in engineering and the applied sciences, industrial R&amp;D teams, and technology practitioners.</p>
+
+      <h2>What distinguishes the journal</h2>
+      <ul>
+        <li>A clearly bounded scope: the journal publishes only research within its stated aims and declines work that belongs elsewhere, so readers and authors know exactly what it stands for.</li>
+        <li>Double-anonymous peer review by at least two independent experts, with editorial decisions made on scholarly merit alone.</li>
+        <li>Full open access under CC BY 4.0 at no cost to readers, with authors retaining copyright.</li>
+        <li>Adherence to COPE Core Practices, discipline-specific reporting standards and transparent policies on ethics, data and generative AI.</li>
+        <li>Permanent identifiers and preservation: Crossref DOIs for every article, ORCID iDs for authors, and long-term digital archiving.</li>
+      </ul>
+
+      <h2>Ownership and management</h2>
+      <p>The journal is owned and published by We Avec U (WAU) Group (<span class="tbc">registered legal entity name and registration number</span>), <span class="tbc">registered postal address</span>, India. The journal is managed by the Managing Editor under the direction of the Editor-in-Chief. Editorial decisions rest with the Editor-in-Chief and the editorial board, independently of the publisher and of any fee paid.</p>
+
+      <h2>Sources of revenue</h2>
+      <p>The journal is funded by <span class="tbc">article processing charges (if any) and</span> institutional support from the publisher <span class="tbc">and any sponsorship</span>. No source of revenue has any influence on editorial decisions.</p>
+    </div>
+    <aside>
+      <div class="panel">
+        <h2>Standards</h2>
+        <p>COPE Core Practices; Principles of Transparency and Best Practice in Scholarly Publishing; CC BY 4.0; Crossref DOIs; ORCID; CRediT.</p>
+        <p><a href="#/standards">Standards and best practice</a><br><a href="#/indexing">Indexing and abstracting</a><br><a href="#/frequency">Publication frequency</a></p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ======================= AIMS AND SCOPE ======================= -->
+<section class="page" data-page="scope" data-nav="scope" data-title="Aims and scope">
+  <div class="prose">
+    <h1 class="page">Aims and scope</h1>
+    <p class="lead">WAU International Journal of Engineering and Applied Sciences publishes original research in engineering and the applied sciences.</p>
+    <h2>Aims</h2>
+    <ul>
+      <li>Publish rigorous, reproducible engineering research that advances methods, systems and applications.</li>
+      <li>Provide a single, credible venue for work that crosses engineering branches, such as AI in structural monitoring or energy systems for medical devices.</li>
+      <li>Connect academic research with industrial practice through application-focused articles, case studies and technical notes.</li>
+      <li>Hold every article to international standards of peer review, reporting and research integrity, whatever the author's country or career stage.</li>
+    </ul>
+  </div>
+  <h2>Scope</h2>
+  <p>The journal welcomes submissions in the following areas. Each area is handled by its own Associate Editor.</p>
+  <div data-scope-blocks></div>
+  <div class="prose">
+    <h2>Out of scope</h2>
+    <p>To keep the scope clear and to direct each manuscript to the most suitable venue, the journal does not consider:</p>
+    <ul>
+      <li>Purely theoretical science with no engineering realisation.</li>
+      <li>Security, cryptography and digital forensics research, which is directed to WAU International Journal of Cyber Security, Cyber Crime and Cyber Psychology.</li>
+      <li>Health technology where the contribution is clinical rather than engineering, which is directed to WAU International Journal of Health and Medical Sciences.</li>
+    </ul>
+    <p class="meta">Manuscripts outside the scope are returned at initial screening, usually within 7 days, without peer review, so that authors can submit elsewhere promptly.</p>
+    <h2>Keywords</h2>
+  </div>
+  <ul class="tags">
+    <li>engineering</li><li>applied sciences</li><li>artificial intelligence</li><li>machine learning</li><li>data science</li><li>civil engineering</li><li>structural engineering</li><li>mechanical engineering</li><li>manufacturing</li><li>electrical engineering</li><li>renewable energy</li><li>power electronics</li><li>biotechnology</li><li>biomedical engineering</li><li>sustainability</li>
+  </ul>
+</section>
+
+<!-- ======================= EDITORIAL BOARD ======================= -->
+<section class="page" data-page="board" data-nav="board" data-title="Editorial board">
+  <h1 class="page">Editorial board</h1>
+  <p class="prose">The editorial board is responsible for the scholarly quality and integrity of the journal. Members are appointed for renewable terms of three years on the basis of their research standing in the field. Every member is listed with full name, institutional affiliation, country and ORCID iD, and has consented to appointment.</p>
+
+  <h2>Editor-in-Chief</h2>
+  <div class="cards">
+    <div class="card"><div class="role">Editor-in-Chief</div><div class="nm"><span class="tbc">Full name, degree</span></div><div class="line"><span class="tbc">Institution, country</span></div><div class="line"><span class="tbc">ORCID iD</span></div><div class="line"><span class="tbc">Institutional email</span></div></div>
+  </div>
+
+  <h2>Associate editors</h2>
+  <p class="meta">One Associate Editor is appointed for each scope area.</p>
+  <div class="cards" data-board-associates></div>
+
+  <h2>Editorial board members</h2>
+  <p class="meta">Listed alphabetically by surname.</p>
+  <div class="cards" data-board-members></div>
+
+  <h2>International advisory board</h2>
+  <div class="cards" data-board-advisory></div>
+
+  <h2>Managing editor</h2>
+  <div class="cards">
+    <div class="card"><div class="role">Managing Editor</div><div class="nm"><span class="tbc">Full name</span></div><div class="line">We Avec U (WAU) Group</div><div class="line"><span class="tbc">Email</span></div></div>
+  </div>
+
+  <div class="prose">
+    <h2>Board composition policy</h2>
+    <ul>
+      <li>The board draws members from several countries and institutions. No single institution, including the publisher, will account for more than a small minority of the board.</li>
+      <li>Every member is listed with full name, institutional affiliation, country and ORCID iD, and has consented to appointment.</li>
+      <li>Members are expected to handle manuscripts, review in their field and advise on journal strategy. Inactive members are replaced at the annual board review.</li>
+      <li>Articles authored by editorial board members, including the Editor-in-Chief, are handled entirely by an independent editor with no conflict of interest, and such articles will not exceed 10% of the content of any volume.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ======================= FOR AUTHORS (author guidelines) ======================= -->
+<section class="page" data-page="authors" data-nav="authors" data-title="Author guidelines">
+  <div class="cols">
+    <div class="prose">
+      <h1 class="page">Author guidelines</h1>
+      <h2>Before you submit</h2>
+      <ul>
+        <li>Confirm that the manuscript fits the <a href="#/scope">aims and scope</a>.</li>
+        <li>Confirm that it is original, not published and not under consideration elsewhere.</li>
+        <li>Obtain ethics approval and consent where required, and prepare the relevant reporting checklist.</li>
+      </ul>
+
+      <h2>Manuscript preparation</h2>
+      <ul>
+        <li><strong>Language.</strong> English, in clear academic style. Authors may use professional language editing; this does not guarantee acceptance.</li>
+        <li><strong>File format.</strong> Microsoft Word (.docx) or LaTeX, with figures in high resolution (at least 300 dpi).</li>
+        <li><strong>Anonymisation.</strong> Submit a separate title page. Remove author names, affiliations, acknowledgements and self-identifying references from the anonymised manuscript.</li>
+      </ul>
+
+      <h3>Title page (separate file)</h3>
+      <ul>
+        <li>Concise, informative title (up to 20 words).</li>
+        <li>Full names, affiliations, countries, emails and ORCID iDs of all authors.</li>
+        <li>Corresponding author details.</li>
+        <li>Affiliations in full: department, institution, city and country for every author. Authors without an institutional affiliation should state "Independent Researcher" with city and country.</li>
+        <li>Funding: the name of each funder and the grant or award number, or the statement that the research received no specific grant from any funding agency.</li>
+        <li>Funding statement, competing interests statement, CRediT author contributions, acknowledgements, ethics statement and data availability statement.</li>
+      </ul>
+
+      <h3>Anonymised manuscript</h3>
+      <ul>
+        <li><strong>Abstract.</strong> Up to 250 words. Research articles use a structured abstract: Background or Purpose; Methods or Approach; Findings; Conclusions or Implications. The abstract must stand alone and contain no citations.</li>
+        <li><strong>Keywords.</strong> Four to six keywords that do not repeat the title.</li>
+        <li><strong>Main text.</strong> Introduction; Literature Review (where appropriate); Methods; Results; Discussion; Limitations; Conclusion. Theoretical articles may use a structure suited to the argument.</li>
+        <li><strong>Tables and figures.</strong> Numbered consecutively, cited in the text, with self-explanatory titles and legends.</li>
+        <li><strong>References.</strong> IEEE reference style (numbered, in order of citation). Every in-text citation must appear in the reference list and every reference must be cited. Include DOIs for all references that have them. Cite primary, peer-reviewed sources wherever possible.</li>
+      </ul>
+
+      <h2>Article types</h2>
+      <p class="meta">Word limits exclude the title page, abstract, references, tables and figure legends. The editors may allow longer articles where justified.</p>
+      <div class="scrollx">
+      <table class="data">
+        <tbody>
+          <tr><th>Original Research Article</th><td>Full report of original empirical, experimental or theoretical research. Up to 8,000 words.</td></tr>
+          <tr><th>Review Article</th><td>Systematic, scoping, narrative or critical review that synthesises a body of research and sets out future directions. Up to 9,000 words.</td></tr>
+          <tr><th>Short Communication</th><td>Concise report of novel findings of particular importance. Up to 3,000 words.</td></tr>
+          <tr><th>Technical Note</th><td>A concise report of a new method, device, algorithm or significant improvement. Up to 4,000 words.</td></tr>
+          <tr><th>Industrial Case Study</th><td>A documented application of engineering methods in a real industrial or infrastructure setting, with measured outcomes. Up to 6,000 words.</td></tr>
+          <tr><th>Data or Software Article</th><td>Describes a dataset or research software of reuse value, deposited in a recognised open repository. Up to 3,000 words.</td></tr>
+          <tr><th>Editorial</th><td>Commissioned by the Editor-in-Chief. Not peer reviewed; clearly labelled.</td></tr>
+          <tr><th>Book Review</th><td>Critical review of a recent scholarly book within scope. Up to 2,000 words.</td></tr>
+        </tbody>
+      </table>
+      </div>
+      <p>All article types except Editorials are peer reviewed. Every article type is published under the same open access licence and receives a DOI.</p>
+
+      <h2>Reporting standards</h2>
+      <ul>
+        <li>Describe the experimental set-up, materials, parameters, instrumentation and measurement uncertainty in sufficient detail for replication.</li>
+        <li>Benchmark proposed methods against established baselines using standard datasets or test conditions, and report statistical variation across repeated runs.</li>
+        <li>For machine learning work, state dataset provenance and licence, train, validation and test splits, hyperparameters, compute resources and evaluation protocol.</li>
+        <li>Provide a code and data availability statement; deposit code in a public repository (for example GitHub with a Zenodo DOI) wherever possible.</li>
+        <li>Report units in SI and follow relevant national or international standards (for example BIS, IEC, ISO, ASTM) where they apply.</li>
+      </ul>
+
+      <h2>How review works</h2>
+      <ol>
+        <li>Screening for scope, completeness, similarity and ethics, usually within 7 days.</li>
+        <li>Assignment to the Associate Editor for the scope area.</li>
+        <li>Double-anonymous review by at least two independent experts.</li>
+        <li>Decision: accept, minor revision, major revision or reject. First decision targeted within 8 weeks.</li>
+        <li>Copyediting, author proofs and online publication with a DOI.</li>
+      </ol>
+      <p class="meta">These are targets, not guarantees. The journal never shortens review to meet a timeline.</p>
+
+      <h2>Submission checklist</h2>
+      <ul>
+        <li>Manuscript is within scope and within the word limit for its article type.</li>
+        <li>Title page and anonymised manuscript are prepared as separate files.</li>
+        <li>Structured abstract and keywords are included.</li>
+        <li>Ethics approval, consent and any trial registration are stated.</li>
+        <li>Reporting guideline checklist is attached where applicable.</li>
+        <li>Funding, competing interests, CRediT contributions and data availability statements are complete.</li>
+        <li>References follow the journal style and include DOIs.</li>
+        <li>Permissions for third-party material have been obtained.</li>
+        <li>Any use of generative AI is disclosed.</li>
+        <li>A cover letter explains the contribution and confirms originality.</li>
+      </ul>
+    </div>
+    <aside>
+      <div class="panel">
+        <h2>Ready to submit?</h2>
+        <p>Submit through the online system. You will receive a manuscript ID by email.</p>
+        <p><a class="btn" href="#/submission">Submit manuscript</a></p>
+      </div>
+      <div class="panel">
+        <h2>Charges</h2>
+        <p>No submission or review fees. A charge applies only after acceptance.</p>
+        <p><a href="#/apc">Article processing charges</a></p>
+      </div>
+      <div class="panel">
+        <h2>More for authors</h2>
+        <ul class="linklist">
+          <li><a href="#/why-publish">Why publish with us</a></li>
+          <li><a href="#/submission">Submission process</a></li>
+          <li><a href="#/cfp">Call for papers</a></li>
+          <li><a href="#/special-issues">Special issues and conference papers</a></li>
+          <li><a href="#/reviewers">Reviewer guidelines</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ======================= SUBMISSION ======================= -->
+<section class="page" data-page="submission" data-nav="authors" data-title="Submission process">
+  <div class="prose">
+    <h1 class="page">Submission process</h1>
+    <ol>
+      <li>Register or log in to the submission system at <span class="tbc">https://wijeas.in/submit</span>.</li>
+      <li>Enter author details and ORCID iDs for all authors.</li>
+      <li>Upload the cover letter, title page, anonymised manuscript, figures, supplementary files and reporting checklist.</li>
+      <li>Confirm the author declarations and submit. An acknowledgement with a manuscript ID is sent by email.</li>
+      <li>Track the status of the manuscript through the author dashboard.</li>
+    </ol>
+    <p>Submissions are accepted only through the online system. Email submissions are not accepted except where the system is unavailable, in which case authors should contact <span class="tbc">editor@wijeas.in</span>.</p>
+    <p><a class="btn" href="#/authors">Read the author guidelines first</a></p>
+  </div>
+</section>
+
+<!-- ======================= WHY PUBLISH ======================= -->
+<section class="page" data-page="why-publish" data-nav="authors" data-title="Why publish with us">
+  <h1 class="page">Why publish with us</h1>
+  <div class="benefits">
+    <div class="benefit"><h3>Rigorous, constructive review</h3><p>Double-anonymous peer review by at least two independent experts, with detailed feedback that strengthens your work.</p></div>
+    <div class="benefit"><h3>Timely decisions</h3><p>First decision targeted within eight weeks; accepted articles published online with a DOI soon after acceptance.</p></div>
+    <div class="benefit"><h3>Maximum visibility</h3><p>Immediate open access under CC BY 4.0, Crossref DOI, ORCID linking and metadata optimised for Google Scholar and scholarly discovery services.</p></div>
+    <div class="benefit"><h3>You keep your copyright</h3><p>Authors retain copyright and may share their published article anywhere.</p></div>
+    <div class="benefit"><h3>No hidden costs</h3><p>No submission or review fees; charges, if any, apply only after acceptance, with waivers available.</p></div>
+    <div class="benefit"><h3>The right readership</h3><p>A clearly defined scope in engineering and the applied sciences ensures your work reaches the specialists who will read and cite it.</p></div>
+    <div class="benefit"><h3>Trusted standards</h3><p>Policies aligned with COPE, recognised reporting guidelines and the UGC Suggestive Parameters, and designed to meet the criteria of leading international indexing services.</p></div>
+    <div class="benefit"><h3>Permanent record</h3><p>Long-term digital preservation, so your article remains accessible and citable.</p></div>
+  </div>
+</section>
+
+<!-- ======================= APC ======================= -->
+<section class="page" data-page="apc" data-nav="authors" data-title="Article processing charges">
+  <div class="prose">
+    <h1 class="page">Article processing charges</h1>
+    <p>The journal does not charge any fee for submission or for peer review.</p>
+    <table class="data">
+      <tbody>
+        <tr><th>Submission fee</th><td>None</td></tr>
+        <tr><th>Peer review fee</th><td>None</td></tr>
+        <tr><th>Article processing charge, on acceptance only</th><td><span class="tbc">Amount in INR and USD, or "None" if diamond open access — to be approved by the Founder</span></td></tr>
+      </tbody>
+    </table>
+    <h2>Waivers</h2>
+    <p>Authors who cannot pay may request a full or partial waiver at submission. Waivers are available in particular to authors from low-income countries (as classified by the World Bank), students and early career researchers without funding. Waiver requests are decided by the publisher, are never visible to editors or reviewers, and have no influence on editorial decisions.</p>
+    <p>Charges are payable only after acceptance. The journal never requests payment before a manuscript has been accepted through peer review.</p>
+  </div>
+</section>
+
+<!-- ======================= CALL FOR PAPERS ======================= -->
+<section class="page" data-page="cfp" data-nav="authors" data-title="Call for papers">
+  <div class="prose">
+    <h1 class="page">Call for papers</h1>
+    <p>WAU International Journal of Engineering and Applied Sciences invites original research articles, reviews and other contributions for <span class="tbc">Volume X, Issue Y</span>.</p>
+    <h2>Topics of interest include, but are not limited to</h2>
+  </div>
+  <div data-scope-blocks></div>
+  <div class="prose">
+    <h2>Why submit</h2>
+    <ul>
+      <li>Double-anonymous peer review by international experts.</li>
+      <li>Immediate open access under CC BY 4.0, with authors retaining copyright.</li>
+      <li>Crossref DOI and long-term preservation for every article.</li>
+      <li>No submission or review fees; waivers available.</li>
+    </ul>
+    <h2>Submitting</h2>
+    <p>Submissions are welcome at any time and are published online on acceptance. Manuscripts received by <span class="tbc">date</span> will be considered for <span class="tbc">issue</span>.</p>
+    <p><a class="btn" href="#/submission">Submit manuscript</a></p>
+  </div>
+</section>
+
+<!-- ======================= SPECIAL ISSUES ======================= -->
+<section class="page" data-page="special-issues" data-nav="authors" data-title="Special issues and conference papers">
+  <div class="prose">
+    <h1 class="page">Special issues and conference papers</h1>
+    <p>Special issues bring together high-quality research on a focused theme within the journal's scope. They follow exactly the same peer review and ethics standards as regular issues.</p>
+    <h2>Proposing a special issue</h2>
+    <ul>
+      <li>Proposals are submitted to the Editor-in-Chief with the theme, rationale, relevance to scope, proposed guest editors with affiliations and ORCID iDs, and a timeline.</li>
+      <li>Guest editors must hold a doctorate or equivalent standing in the field and have a verifiable publication record. Their credentials and competing interests are checked before approval.</li>
+      <li>The journal normally publishes no more than one special issue per volume, and special issue articles are assigned to regular quarterly issues.</li>
+    </ul>
+    <h2>Peer review of special issue papers</h2>
+    <ul>
+      <li>Every paper is double-anonymous peer reviewed by at least two independent reviewers.</li>
+      <li>Final acceptance decisions are approved by the Editor-in-Chief or a designated regular editor, not by guest editors alone.</li>
+      <li>Papers authored by a guest editor are handled entirely by a regular editor, and guest editors may author no more than one article in their special issue.</li>
+    </ul>
+    <h2>Papers from conferences</h2>
+    <p>Papers first presented at a conference, including conferences organised by the publisher, are considered only as full, substantially extended manuscripts. They must add significant new content, analysis or results beyond the conference version, disclose the earlier presentation, and undergo full peer review. Presentation at a conference never guarantees acceptance.</p>
+  </div>
+</section>
+
+<!-- ======================= REVIEWERS ======================= -->
+<section class="page" data-page="reviewers" data-nav="authors" data-title="Reviewer guidelines">
+  <div class="prose">
+    <h1 class="page">Reviewer guidelines</h1>
+    <p class="lead">Peer reviewers are central to the quality of the journal. We are grateful to every reviewer who gives their time and expertise.</p>
+    <h2>Before accepting an invitation</h2>
+    <ul>
+      <li>Accept only if the manuscript is within your expertise and you can report within 21 days.</li>
+      <li>Decline if you have a competing interest, including recent collaboration with, or supervision of, any author, or a direct commercial interest.</li>
+    </ul>
+    <h2>Writing the review</h2>
+    <ul>
+      <li>Summarise the manuscript and its main contribution.</li>
+      <li>Assess originality, significance, methodological rigour, adherence to reporting standards, ethics, interpretation of results and clarity.</li>
+      <li>Separate major concerns from minor points, and make specific, constructive suggestions.</li>
+      <li>Give separate confidential comments to the editor where needed, and a recommendation: accept, minor revision, major revision or reject.</li>
+      <li>Write courteously. Personal remarks are not acceptable.</li>
+    </ul>
+    <h2>Confidentiality</h2>
+    <p>Manuscripts are confidential. Do not share them, contact the authors, use unpublished findings, or upload manuscripts or reports to generative AI tools.</p>
+    <h2>Recognition</h2>
+    <p>Reviewers may receive a review certificate and may record verified reviews on ORCID. The journal publishes an annual list thanking its reviewers. Reviewers can register at <span class="tbc">https://wijeas.in/reviewer-registration</span>.</p>
+  </div>
+</section>
+
+<!-- ======================= CURRENT ISSUE ======================= -->
+<section class="page" data-page="current" data-nav="current" data-title="Current issue">
+  <div class="prose">
+    <h1 class="page">Current issue</h1>
+    <p class="meta">One volume per year, four issues: March, June, September and December. Each issue contains a minimum of five peer-reviewed articles.</p>
+    <div class="empty">
+      <p>No issue has been published yet. Volume 1, Issue 1 <span class="tbc">month year</span> will appear here with its full table of contents: article title, authors, article type, DOI and PDF link for every article.</p>
+      <p><a href="#/article">See the sample article page</a></p>
+    </div>
+    <h2>Articles in press</h2>
+    <div class="empty">
+      <p>Accepted articles are published here online with a DOI as soon as production is complete, before they are assigned to an issue.</p>
+    </div>
+    <p style="margin-top:22px"><a class="btn secondary" href="#/past">Browse past issues</a></p>
+  </div>
+</section>
+
+<!-- ======================= PAST ISSUES ======================= -->
+<section class="page" data-page="past" data-nav="past" data-title="Past issues">
+  <div class="prose">
+    <h1 class="page">Past issues</h1>
+    <p>All earlier issues, newest first. One volume is published each year with four quarterly issues. Every article stays permanently available with its DOI.</p>
+    <div class="empty">
+      <p>Past issues will be listed here once a second issue has been published. Until then, see the <a href="#/current">current issue</a>.</p>
+    </div>
+    <h2>How this page will look</h2>
+    <p class="meta">Volume block, newest first, with one card per quarterly issue. Each card opens that issue's table of contents.</p>
+  </div>
+  <h3>Volume 1 <span class="tbc">year</span></h3>
+  <div class="cards">
+    <div class="issuecard"><strong>Issue 1</strong><div class="line meta"><span class="tbc">March year</span></div><div class="line meta"><span class="tbc">article count</span></div></div>
+    <div class="issuecard"><strong>Issue 2</strong><div class="line meta"><span class="tbc">June year</span></div><div class="line meta"><span class="tbc">article count</span></div></div>
+    <div class="issuecard"><strong>Issue 3</strong><div class="line meta"><span class="tbc">September year</span></div><div class="line meta"><span class="tbc">article count</span></div></div>
+    <div class="issuecard"><strong>Issue 4</strong><div class="line meta"><span class="tbc">December year</span></div><div class="line meta"><span class="tbc">article count</span></div></div>
+  </div>
+  <p class="meta" style="margin-top:12px">Build note: list only issues that were actually published. Do not create entries for missed quarters, and never move newly published articles into past issues.</p>
+</section>
+
+<!-- ======================= ARTICLE PAGE ======================= -->
+<section class="page" data-page="article" data-nav="current" data-title="Sample article page">
+  <div class="cols">
+    <div class="prose">
+      <p class="meta">Research article. Sample layout for every article page.</p>
+      <h1 class="page" style="font-size:28px"><span class="tbc">Article title</span></h1>
+      <p><span class="tbc">Author One</span> <span class="meta">ORCID</span>, <span class="tbc">Author Two</span> <span class="meta">ORCID</span><br>
+      <span class="meta"><span class="tbc">Department, institution, city, country</span></span></p>
+      <dl class="datesrow">
+        <div><dt>Received</dt><dd><span class="tbc">date</span></dd></div>
+        <div><dt>Revised</dt><dd><span class="tbc">date</span></dd></div>
+        <div><dt>Accepted</dt><dd><span class="tbc">date</span></dd></div>
+        <div><dt>Published</dt><dd><span class="tbc">date</span></dd></div>
+      </dl>
+      <p>DOI <span class="tbc">https://doi.org/10.xxxx/wijeas.xxxx</span><br>
+      Volume <span class="tbc">X</span>, Issue <span class="tbc">Y</span>. Licence: CC BY 4.0</p>
+      <h2>Abstract</h2>
+      <p><span class="tbc">Structured abstract: Purpose; Methods or Approach; Findings; Conclusions or Implications. Up to 250 words.</span></p>
+      <h2>Keywords</h2>
+      <p><span class="tbc">four to six keywords</span></p>
+      <h2>Declarations</h2>
+      <ul>
+        <li>Funding: <span class="tbc">funder and grant number</span></li>
+        <li>Competing interests: <span class="tbc">statement</span></li>
+        <li>Author contributions (CRediT): <span class="tbc">statement</span></li>
+        <li>Ethics approval: <span class="tbc">committee and reference</span></li>
+        <li>Data availability: <span class="tbc">repository and identifier</span></li>
+      </ul>
+      <h2>Required page metadata</h2>
+      <p class="meta">Build note for SOXIT: every article page carries Google Scholar citation meta tags in the page head — citation_title, citation_author (one per author, each followed by citation_author_institution and citation_author_orcid), citation_publication_date, citation_journal_title, citation_issn, citation_volume, citation_issue, citation_firstpage, citation_lastpage, citation_doi, citation_pdf_url, citation_abstract_html_url, citation_publisher, citation_keywords, citation_language. The PDF must be publicly accessible without login.</p>
+    </div>
+    <aside>
+      <div class="panel">
+        <h2>Read</h2>
+        <p><a class="btn" href="#/article">Download PDF</a></p>
+        <p><a class="btn secondary" href="#/article">Read full text (HTML)</a></p>
+      </div>
+      <div class="panel">
+        <h2>Cite this article</h2>
+        <p>Citation in IEEE reference style (numbered, in order of citation), with export to RIS and BibTeX.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ======================= POLICIES HUB ======================= -->
+<section class="page" data-page="policies" data-nav="policies" data-title="Policies">
+  <h1 class="page">Policies</h1>
+  <p class="prose">Full policy text is published on a dedicated page for each policy. Summaries:</p>
+  <div data-policy-hub></div>
+</section>
+
+<!-- Individual policy pages are generated here -->
+<div data-policy-pages></div>
+
+<!-- ======================= STANDARDS ======================= -->
+<section class="page" data-page="standards" data-nav="about" data-title="Standards and best practice">
+  <div class="prose">
+    <h1 class="page">Standards and best practice</h1>
+    <p>The journal's policies and workflows follow recognised international standards for scholarly publishing, and are designed to meet the evaluation criteria used by leading international indexing and abstracting services.</p>
+    <h2>Standards the journal follows</h2>
+    <ul>
+      <li><strong>COPE Core Practices.</strong> Publication ethics and handling of misconduct.</li>
+      <li><strong>Principles of Transparency and Best Practice in Scholarly Publishing.</strong> Joint principles of COPE, DOAJ, OASPA and WAME, covering website content, peer review, ownership, fees and archiving.</li>
+      <li><strong>Reporting guidelines.</strong> Discipline-specific reporting standards, including EQUATOR Network guidelines where relevant.</li>
+      <li><strong>Open access.</strong> Budapest Open Access Initiative definition; Creative Commons Attribution 4.0 licence.</li>
+      <li><strong>Persistent identifiers.</strong> Crossref DOIs for articles, ORCID iDs for authors, CRediT contributor roles.</li>
+      <li><strong>Preservation.</strong> Long-term digital archiving.</li>
+    </ul>
+    <h2>Alignment with the UGC Suggestive Parameters</h2>
+    <p>For researchers in India, the journal is designed in line with the eight criteria of the University Grants Commission's Suggestive Parameters for peer-reviewed journals: valid ISSN and regular quarterly publication; a qualified editorial board with verifiable affiliations; published editorial policies; quality criteria for published content; recognised publishing standards; research ethics; visibility through open access and indexing; and scholarly impact.</p>
+    <p>The UGC does not approve or list individual journals. Institutions assess journals against these parameters themselves.</p>
+  </div>
+</section>
+
+<!-- ======================= INDEXING ======================= -->
+<section class="page" data-page="indexing" data-nav="about" data-title="Indexing and abstracting">
+  <div class="prose">
+    <h1 class="page">Indexing and abstracting</h1>
+    <p>The journal is listed only in services where inclusion has been confirmed. This page is updated as indexing is granted.</p>
+    <table class="data">
+      <thead><tr><th>Service</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Crossref (DOI registration)</td><td><span class="tbc">display once membership is active</span></td></tr>
+        <tr><td>Google Scholar</td><td><span class="tbc">display once articles appear</span></td></tr>
+        <tr><td>ORCID integration</td><td><span class="tbc">display once enabled</span></td></tr>
+        <tr><td>DOAJ</td><td><span class="tbc">display only once accepted</span></td></tr>
+      </tbody>
+    </table>
+    <p>The journal does not use or display metrics from unrecognised impact factor services.</p>
+  </div>
+</section>
+
+<!-- ======================= FREQUENCY ======================= -->
+<section class="page" data-page="frequency" data-nav="about" data-title="Publication frequency">
+  <div class="prose">
+    <h1 class="page">Publication frequency</h1>
+    <p>WAU International Journal of Engineering and Applied Sciences is a quarterly journal. It publishes one volume per calendar year, comprising four issues released in March, June, September and December. Each issue contains a minimum of five peer-reviewed articles.</p>
+    <p>Articles are published online with a DOI as soon as they have completed production ("Articles in press"), and are then assigned to the next scheduled issue. This keeps publication fast for authors and the quarterly schedule regular for readers and indexing services.</p>
+    <table class="data">
+      <thead><tr><th>Issue</th><th>Release</th><th>Coverage</th></tr></thead>
+      <tbody>
+        <tr><td>Issue 1</td><td>March</td><td>Articles accepted and produced from December to February</td></tr>
+        <tr><td>Issue 2</td><td>June</td><td>Articles accepted and produced from March to May</td></tr>
+        <tr><td>Issue 3</td><td>September</td><td>Articles accepted and produced from June to August</td></tr>
+        <tr><td>Issue 4</td><td>December</td><td>Articles accepted and produced from September to November</td></tr>
+      </tbody>
+    </table>
+    <p>Submissions are welcome throughout the year. There are no issue deadlines for regular articles.</p>
+  </div>
+</section>
+
+<!-- ======================= CONTACT ======================= -->
+<section class="page" data-page="contact" data-nav="contact" data-title="Contact">
+  <div class="prose">
+    <h1 class="page">Contact</h1>
+    <table class="data">
+      <tbody>
+        <tr><th>Editorial office</th><td><span class="tbc">editor@wijeas.in</span></td></tr>
+        <tr><th>Editor-in-Chief</th><td><span class="tbc">name and email</span></td></tr>
+        <tr><th>Managing Editor</th><td><span class="tbc">name and email</span></td></tr>
+        <tr><th>Publisher</th><td>We Avec U (WAU) Group</td></tr>
+        <tr><th>Postal address</th><td><span class="tbc">registered postal address</span>, India</td></tr>
+        <tr><th>Website</th><td>https://wijeas.in</td></tr>
+      </tbody>
+    </table>
+    <p>For questions about a submission, please include the manuscript ID in the subject line.</p>
+  </div>
+</section>
+
+</div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <h2>WAU International Journal of Engineering and Applied Sciences</h2>
+      <p>ISSN <span class="tbc">shown once assigned</span> (online). Quarterly. Open access under CC BY 4.0.</p>
+      <p>We Avec U (WAU) Group<br><span class="tbc">Registered postal address</span><br><span class="tbc">Journal email</span></p>
+      <p class="fine">Policies follow COPE Core Practices and are designed in line with the UGC Suggestive Parameters for peer-reviewed journals.</p>
+    </div>
+    <div>
+      <h2>Journal</h2>
+      <ul>
+        <li><a href="#/about">About</a></li>
+        <li><a href="#/scope">Aims and scope</a></li>
+        <li><a href="#/board">Editorial board</a></li>
+        <li><a href="#/standards">Standards and best practice</a></li>
+        <li><a href="#/indexing">Indexing</a></li>
+        <li><a href="#/frequency">Publication frequency</a></li>
+        <li><a href="#/contact">Contact</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Authors and reviewers</h2>
+      <ul>
+        <li><a href="#/authors">Author guidelines</a></li>
+        <li><a href="#/apc">Article processing charges</a></li>
+        <li><a href="#/reviewers">Reviewer guidelines</a></li>
+        <li><a href="#/policies">Policies</a></li>
+        <li><a href="#/current">Current issue</a></li>
+        <li><a href="#/past">Past issues</a></li>
+        <li><a href="#/article">Sample article page</a></li>
+        <li><a href="#/policy-privacy">Privacy statement</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+"use strict";
+
+/* ---------- Scope areas (Section 9.2: six areas, one Associate Editor each) ---------- */
+var SCOPE = [
+ ["Computing, Artificial Intelligence and Data Science","Algorithms, machine learning and deep learning, software engineering, data systems, IoT, cloud and edge computing, where the contribution is technical."],
+ ["Civil, Structural and Environmental Engineering","Structures, geotechnics, transportation, water resources, construction materials and management, environmental engineering and sustainable infrastructure."],
+ ["Mechanical, Production and Materials Engineering","Design, thermal and fluid systems, manufacturing and additive processes, robotics and mechatronics, materials science and tribology."],
+ ["Electrical, Electronics and Energy Systems","Power systems, renewable energy and storage, power electronics, VLSI and embedded systems, communication and signal processing, control systems."],
+ ["Biotechnology, Biomedical Engineering and Bioinformatics","Bioprocess engineering, biomaterials, medical devices and imaging, computational biology and bioinformatics."],
+ ["Applied Physics, Chemistry and Mathematics","Physical, chemical and mathematical work directed at an engineered application, including computational modelling, simulation and optimisation."]
+];
+
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+
+document.querySelectorAll("[data-scope-blocks]").forEach(function(el){
+  el.innerHTML = SCOPE.map(function(a){
+    return '<div class="scope"><h3>'+esc(a[0])+'</h3><p>'+esc(a[1])+'</p></div>';
+  }).join("");
+});
+
+/* ---------- Editorial board cards ---------- */
+function card(role,extra){
+  return '<div class="card"><div class="role">'+esc(role)+'</div>'+
+  '<div class="nm"><span class="tbc">Full name</span></div>'+
+  '<div class="line"><span class="tbc">Institution, country</span></div>'+
+  '<div class="line"><span class="tbc">ORCID iD</span></div>'+(extra||"")+'</div>';
+}
+var assoc = document.querySelector("[data-board-associates]");
+if(assoc){assoc.innerHTML = SCOPE.map(function(a){return card("Associate Editor, "+a[0]);}).join("");}
+var mem = document.querySelector("[data-board-members]");
+if(mem){mem.innerHTML = [0,1,2,3,4,5].map(function(){return card("Editorial Board Member");}).join("");}
+var adv = document.querySelector("[data-board-advisory]");
+if(adv){adv.innerHTML = [0,1,2].map(function(){return card("International Advisory Board");}).join("");}
+
+/* ---------- Policies: 16 policies, summary on the hub, full text on its own page ---------- */
+var POLICIES = [
+ {id:"peer-review",title:"Peer review",
+  summary:"All research content undergoes double-anonymous peer review by at least two independent experts. First decision targeted within eight weeks.",
+  body:'<p>All research content published in the journal undergoes double-anonymous peer review: reviewers do not know the identity of the authors, and authors do not know the identity of the reviewers.</p>'+
+  '<h2>The review process</h2><ol>'+
+  '<li><strong>Initial screening.</strong> The editorial office checks scope, completeness, formatting, similarity and adherence to ethics requirements. Manuscripts that fail screening are returned, usually within 7 days.</li>'+
+  '<li><strong>Editor assignment.</strong> The Editor-in-Chief assigns the manuscript to the Associate Editor for the relevant scope area, who must have no conflict of interest.</li>'+
+  '<li><strong>Reviewer selection.</strong> The handling editor invites at least two independent expert reviewers. At least one reviewer must be external to the editorial board and to the author\'s institution. Reviewers must not have co-authored with any author in the past three years.</li>'+
+  '<li><strong>Review.</strong> Reviewers are asked to return reports within 21 days, assessing originality, methodological soundness, significance, ethics and clarity.</li>'+
+  '<li><strong>Decision.</strong> The handling editor weighs the reports and makes a recommendation; the Editor-in-Chief makes the final decision: accept, minor revision, major revision or reject.</li>'+
+  '<li><strong>Revision.</strong> Authors respond point by point. Major revisions are normally returned to the original reviewers.</li>'+
+  '<li><strong>Acceptance and production.</strong> Accepted articles are copyedited, typeset, proofed by the authors and published online with a DOI.</li></ol>'+
+  '<h2>Target timelines</h2><table class="data"><tbody>'+
+  '<tr><th>Initial screening</th><td>Within 7 days</td></tr>'+
+  '<tr><th>First decision after review</th><td>Within 8 weeks of submission</td></tr>'+
+  '<tr><th>Publication online after acceptance</th><td>Within 4 weeks</td></tr></tbody></table>'+
+  '<p>These are targets, not guarantees. The journal never shortens review to meet a timeline.</p>'+
+  '<h2>Editorial independence</h2><p>Decisions are based only on scholarly merit, relevance to scope and ethical soundness. They are never influenced by payment of fees, the author\'s institution, nationality, seniority or relationship with the publisher. Fee and waiver information is not visible to editors or reviewers.</p>'+
+  '<h2>Publication dates</h2><p>Each article displays its received, revised, accepted and published dates.</p>'},
+
+ {id:"publication-ethics",title:"Publication ethics and malpractice",
+  summary:"The journal follows COPE Core Practices and handles all allegations of misconduct using COPE flowcharts.",
+  body:'<p>The journal follows the Core Practices of the Committee on Publication Ethics (COPE) and handles all allegations of misconduct using COPE flowcharts.</p>'+
+  '<h2>Duties of editors</h2><ul><li>Evaluate manuscripts solely on intellectual merit, without regard to authors\' race, gender, sexual orientation, religion, ethnicity, citizenship or political philosophy.</li><li>Keep all information about submitted manuscripts confidential.</li><li>Declare competing interests and withdraw from handling any manuscript where a conflict exists.</li><li>Respond promptly to ethical complaints and publish corrections, retractions or expressions of concern when needed.</li></ul>'+
+  '<h2>Duties of reviewers</h2><ul><li>Review objectively and constructively, and support opinions with evidence.</li><li>Treat manuscripts as confidential; do not share, use or upload them to any external tool, including generative AI systems.</li><li>Decline where there is a competing interest or insufficient expertise.</li><li>Alert the editor to suspected plagiarism, duplicate publication, data fabrication or ethical concerns.</li></ul>'+
+  '<h2>Duties of authors</h2><ul><li>Submit original work that has not been published and is not under consideration elsewhere.</li><li>Report data accurately; fabrication, falsification and image manipulation are misconduct.</li><li>Cite all sources used, and obtain permission to reproduce copyrighted material.</li><li>Disclose all funding and competing interests.</li><li>Notify the editor promptly of any significant error discovered after submission or publication.</li></ul>'+
+  '<h2>Misconduct</h2><p>Suspected misconduct, including plagiarism, data fabrication, duplicate submission, citation manipulation, authorship disputes, fraudulent peer review and paper-mill activity, is investigated following COPE guidance. Outcomes may include rejection, correction, retraction, notification of the author\'s institution and a ban on future submissions.</p>'+
+  '<h2>Citation manipulation</h2><p>Editors and reviewers must not require authors to cite their own work or the journal\'s articles unless the citation is scientifically necessary. Authors must not engage in excessive self-citation or citation stacking.</p>'},
+
+ {id:"authorship",title:"Authorship and contributorship",
+  summary:"Authorship must reflect a genuine intellectual contribution, described using CRediT. Gift, guest and ghost authorship are not permitted.",
+  body:'<p>Authorship must reflect a genuine intellectual contribution. Every listed author must have made a substantial contribution to the conception, design, data, analysis or interpretation of the work; drafted or critically revised it; approved the final version; and agreed to be accountable for it.</p>'+
+  '<ul><li>Contributions of each author must be described using the CRediT (Contributor Roles Taxonomy) statement.</li><li>A corresponding author must be designated and is responsible for communication with the journal.</li><li>ORCID iDs are required for the corresponding author and strongly encouraged for all authors.</li><li>Gift, guest and ghost authorship are not permitted. Contributors who do not meet the criteria are named in the Acknowledgements.</li><li>Changes to the author list after submission require a signed statement from all authors and the approval of the editor.</li><li>Generative AI tools cannot be listed as authors.</li></ul>'},
+
+ {id:"competing-interests",title:"Competing interests",
+  summary:"Authors, reviewers and editors must declare any financial, professional or personal interest that could influence the work.",
+  body:'<p>A competing interest exists when a financial, professional or personal relationship could influence, or appear to influence, the conduct or reporting of work.</p>'+
+  '<ul><li>Authors must declare all funding sources and any relationships relevant to the submitted work; where none exist, a statement that the authors declare no competing interests is published.</li><li>Reviewers and editors must declare competing interests and decline to handle affected manuscripts.</li><li>Competing interest statements are published with every article.</li></ul>'},
+
+ {id:"research-ethics",title:"Research ethics",
+  summary:"Human-participant work requires prior ethics approval and consent. Dual-use work requires a misuse and mitigation statement.",
+  body:'<p>The journal publishes only research that has been conducted ethically and responsibly. The following requirements apply to this journal:</p>'+
+  '<ul><li>Studies involving human participants, including user studies, usability trials and wearable or biomedical device testing, require prior ethics committee approval and informed consent.</li><li>Work with dual-use potential, for example autonomous systems or surveillance technology, must include a statement on foreseeable misuse and mitigation.</li><li>Environmental field studies must hold any permits required by the relevant authority.</li><li>Authors must include an ethics statement in the manuscript, even where approval was not required, explaining why.</li><li>The editors may request copies of approval letters, consent forms or data, and may decline manuscripts where ethical conduct cannot be verified.</li></ul>'},
+
+ {id:"reporting-and-data",title:"Reporting standards and data availability",
+  summary:"Methods must be reported in enough detail to replicate, and every research article carries a data availability statement.",
+  body:'<h2>Reporting standards</h2><ul><li>Describe the experimental set-up, materials, parameters, instrumentation and measurement uncertainty in sufficient detail for replication.</li><li>Benchmark proposed methods against established baselines using standard datasets or test conditions, and report statistical variation across repeated runs.</li><li>For machine learning work, state dataset provenance and licence, train, validation and test splits, hyperparameters, compute resources and evaluation protocol.</li><li>Provide a code and data availability statement; deposit code in a public repository (for example GitHub with a Zenodo DOI) wherever possible.</li><li>Report units in SI and follow relevant national or international standards (for example BIS, IEC, ISO, ASTM) where they apply.</li></ul>'+
+  '<h2>Data availability</h2><p>Every research article must include a Data Availability Statement explaining where the data, code and materials supporting the findings can be accessed. Deposit in a recognised public repository with a persistent identifier (for example Zenodo, OSF, Figshare or Dryad) is strongly encouraged. Where data cannot be shared for legal, ethical or confidentiality reasons, the statement must explain why and how qualified researchers may request access.</p>'+
+  '<h2>Preprints</h2><p>Posting a preprint on a recognised preprint server does not prevent submission. Authors should disclose the preprint and its DOI at submission and link the published article to the preprint once published.</p>'},
+
+ {id:"plagiarism",title:"Plagiarism and similarity",
+  summary:"Every submission is screened before peer review. Reports are read by an editor; there is no automatic numeric threshold.",
+  body:'<p>Every submission is screened with <span class="tbc">Crossref Similarity Check (iThenticate)</span> before peer review. The similarity report is examined by an editor; there is no automatic numeric threshold, because acceptable overlap depends on where it occurs.</p>'+
+  '<ul><li>Copying text, data, figures or ideas without attribution is plagiarism, whatever the source.</li><li>Reusing substantial parts of the authors\' own published work without disclosure (text recycling or duplicate publication) is not permitted.</li><li>Manuscripts based on theses or conference papers must disclose the earlier version.</li><li>Plagiarism detected before publication leads to rejection; detected after publication, it leads to correction or retraction under COPE guidance.</li></ul>'},
+
+ {id:"generative-ai",title:"Generative AI",
+  summary:"AI tools cannot be authors. Use beyond basic language correction must be disclosed, and manuscripts must never be uploaded to AI tools by reviewers or editors.",
+  body:'<h2>For authors</h2><ul><li>Generative AI tools may not be listed as authors, because they cannot take responsibility for the work.</li><li>Authors who use generative AI for any purpose beyond basic spelling and grammar correction must disclose the tool, version and purpose in the Methods or Acknowledgements.</li><li>Authors remain fully responsible for the accuracy, originality and integrity of all content, including any AI-assisted text, analysis or code, and must verify all references.</li><li>AI-generated or AI-altered images, figures and data are not permitted unless AI is itself the subject of the research and the use is fully described.</li></ul>'+
+  '<h2>For reviewers and editors</h2><ul><li>Manuscripts and review reports are confidential and must not be uploaded to generative AI tools.</li><li>Reviewers and editors must not use generative AI to write reviews or make editorial decisions.</li></ul>'},
+
+ {id:"corrections",title:"Corrections and retractions",
+  summary:"Corrections, retractions and expressions of concern follow COPE guidelines, are linked to the original article and carry their own DOI.",
+  body:'<p>The published record is maintained in line with COPE Retraction Guidelines. All notices are linked to the original article, carry their own DOI and are free to read.</p>'+
+  '<ul><li><strong>Correction.</strong> Published when an error affects the article but not its overall findings.</li><li><strong>Retraction.</strong> Published when findings are unreliable because of major error or misconduct, or in cases of plagiarism, duplicate publication or unethical research. Retracted articles remain online, clearly watermarked "Retracted".</li><li><strong>Expression of concern.</strong> Published while an investigation is ongoing or when evidence is inconclusive.</li></ul>'+
+  '<p>Articles are removed from the site only in exceptional circumstances, such as legal infringement or a serious risk to health, and a notice explaining the removal is kept.</p>'},
+
+ {id:"appeals",title:"Appeals and complaints",
+  summary:"Authors may appeal a rejection once within 30 days. Complaints are acknowledged within 7 days and resolved wherever possible within 30 days.",
+  body:'<h2>Appeals</h2><p>Authors may appeal a rejection once, by writing to the Editor-in-Chief within 30 days of the decision, explaining in detail why the decision should be reconsidered. Appeals are assessed by an editor not involved in the original decision. The outcome of the appeal is final.</p>'+
+  '<h2>Complaints</h2><p>Complaints about the journal\'s processes, editors or published content should be sent to <span class="tbc">editor@wijeas.in</span>. Complaints are acknowledged within 7 days and resolved, wherever possible, within 30 days. Complaints about the Editor-in-Chief are directed to the publisher at <span class="tbc">publisher contact email</span>. If a complaint is not resolved satisfactorily, the complainant may refer the matter to COPE.</p>'},
+
+ {id:"open-access",title:"Open access and licensing",
+  summary:"Fully open access. Every article is free to read on publication and published under CC BY 4.0.",
+  body:'<p>The journal is fully open access. All articles are freely available to read, download, copy, distribute, print, search and link to immediately on publication, without subscription or registration, in accordance with the Budapest Open Access Initiative.</p>'+
+  '<p>Articles are published under the Creative Commons Attribution 4.0 International licence (CC BY 4.0). Anyone may share and adapt the work for any purpose, provided appropriate credit is given to the original authors and source, a link to the licence is provided, and any changes are indicated.</p>'+
+  '<p>The licence is displayed on the article landing page and in the article PDF, and is included in the metadata deposited with Crossref.</p>'},
+
+ {id:"copyright",title:"Copyright",
+  summary:"Authors retain copyright without restriction and grant the journal a non-exclusive licence to publish.",
+  body:'<p>Authors retain copyright in their work without restriction. On acceptance, authors grant the journal a non-exclusive licence to publish the article and to identify itself as the original publisher.</p>'+
+  '<ul><li>Authors may deposit any version of their article, including the published version, in institutional or subject repositories and on personal websites immediately, with a link to the published article.</li><li>Authors are responsible for obtaining permission to reproduce any third-party material included in the article.</li><li>Material from third parties that is not covered by CC BY must be clearly labelled.</li></ul>'},
+
+ {id:"special-issues-policy",title:"Special issues and conference papers",
+  summary:"Special issues follow the same review and ethics standards as regular issues. Conference papers are considered only as substantially extended manuscripts.",
+  link:"#/special-issues"},
+
+ {id:"archiving",title:"Archiving",
+  summary:"All articles are deposited for long-term preservation, and every article has a Crossref DOI that will always resolve.",
+  body:'<p>The journal is committed to the permanent availability of its content.</p>'+
+  '<ul><li>All articles are deposited for long-term preservation with <span class="tbc">PKP Preservation Network, Portico or CLOCKSS — arrangement to be confirmed</span>, which ensures access if the journal ceases publication.</li><li>Every article has a Crossref DOI that will always resolve to the article.</li><li>Authors are permitted and encouraged to deposit published articles in institutional and subject repositories.</li><li>The publisher maintains secure off-site backups of all journal content.</li></ul>'},
+
+ {id:"advertising",title:"Advertising",
+  summary:"Advertising is kept separate from editorial content and has no influence on editorial decisions.",
+  body:'<p>The journal does not accept advertising that is misleading, or that relates to products or services inconsistent with its scholarly mission. Any advertising or sponsorship is clearly identified, is kept separate from editorial content, and has no influence on editorial decisions. Sponsored supplements or special issues are peer reviewed to the same standard as regular content and carry a disclosure of the sponsor.</p>'},
+
+ {id:"privacy",title:"Privacy",
+  summary:"Personal data entered on this site are used only for the stated purposes of the journal, under the Digital Personal Data Protection Act, 2023.",
+  body:'<p>Names, email addresses and other personal data entered on this site are used only for the stated purposes of the journal and are not shared with any other party. Personal data are processed in accordance with the Digital Personal Data Protection Act, 2023. Users may request access to, correction of, or deletion of their personal data by writing to <span class="tbc">editor@wijeas.in</span>.</p>'}
+];
+
+var hub = document.querySelector("[data-policy-hub]");
+if(hub){
+  hub.innerHTML = POLICIES.map(function(p){
+    var href = p.link || ("#/policy-"+p.id);
+    return '<details class="policy"><summary>'+esc(p.title)+'</summary><div class="body"><p>'+esc(p.summary)+
+      '</p><p><a href="'+href+'">Read the full '+esc(p.title.toLowerCase())+' policy</a></p></div></details>';
+  }).join("");
+}
+
+var pages = document.querySelector("[data-policy-pages]");
+if(pages){
+  pages.innerHTML = POLICIES.filter(function(p){return p.body;}).map(function(p){
+    return '<section class="page" data-page="policy-'+p.id+'" data-nav="policies" data-title="'+esc(p.title)+'">'+
+      '<div class="prose"><h1 class="page">'+esc(p.title)+'</h1>'+p.body+
+      '<hr class="hr"><p><a href="#/policies">Back to all policies</a></p></div></section>';
+  }).join("");
+}
+
+/* ---------- Router ---------- */
+var BASE = "WAU International Journal of Engineering and Applied Sciences";
+var sections = {};
+document.querySelectorAll("section.page").forEach(function(s){
+  sections[s.getAttribute("data-page")] = s;
+  s.hidden = true;
+});
+var navLinks = document.querySelectorAll("nav.primary a");
+
+function show(id, initial){
+  if(!sections[id]) id = "home";
+  Object.keys(sections).forEach(function(k){ sections[k].hidden = (k !== id); });
+  var nav = sections[id].getAttribute("data-nav");
+  navLinks.forEach(function(a){
+    var target = a.getAttribute("href").slice(2);
+    if(target === nav){ a.setAttribute("aria-current","page"); }
+    else { a.removeAttribute("aria-current"); }
+  });
+  var t = sections[id].getAttribute("data-title");
+  document.title = (id === "home") ? BASE : t + " | " + BASE;
+  if(!initial) window.scrollTo(0,0);
+}
+function route(initial){
+  var h = (location.hash || "#/home").replace(/^#\/?/,"");
+  show(h || "home", initial);
+}
+window.addEventListener("hashchange", function(){ route(false); });
+route(true);
+})();
+</script>
+</body>
+</html>
